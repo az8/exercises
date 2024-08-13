@@ -1,1 +1,1 @@
-Frontent Exercises
+Frontend Exercises

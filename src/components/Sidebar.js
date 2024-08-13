@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 export default function Sidebar({currentExercise, setCurrentExcercise}) {
 
-    const excerciseCount = 2;    
+    const excerciseCount = 3;    
 
     return (
         <Box sx={{overflow: scroll}}>
