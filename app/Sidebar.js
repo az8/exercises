@@ -21,7 +21,7 @@ export default function Sidebar({currentExercise}) {
                             background: "#e5e5e5"
                         }
                     }}
-                    onClick={() => router.push(`${key > 0 ? key + 1 : "/"}`)}
+                    onClick={() => router.push(`/${key > 0 ? key + 1 : ""}`)}
                 >
                         {key + 1}
                 </Box>
