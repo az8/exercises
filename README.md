@@ -21,8 +21,8 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1:
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the /1.
+Problem 1:
+Open [http://localhost:3000](http://localhost:3000) or [http://localhost:3000/1](http://localhost:3000/1)with your browser to see the /1.
 Open [http://localhost:3000/1/admin](http://localhost:3000/1/admin) with your browser to see the /1/admin route. Enter Username admin and Pasword admin to login.
 Open [http://localhost:3000/api/leads](http://localhost:3000/api/leads) with your browser to see the /api/leads api route.
 Code is at app/1 and app/api/leads
