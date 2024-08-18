@@ -4,6 +4,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
 import CircularProgress from '@mui/material/CircularProgress';
+import Login from "./Login";
 
 
 export default function Admin1() {
@@ -19,6 +20,8 @@ export default function Admin1() {
     const [allPaginationPageCount, setAllPaginationPageCount] = useState(1);
 
     const [statusFilter, setStatusFilter] = useState("");
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         setCurrentPaginationPage(1);
@@ -69,6 +72,7 @@ export default function Admin1() {
             setFilteredData(data);
             setLoading(false);
         });
+        if(localStorage.getItem("authenticated") === "true") setIsLoggedIn(true);
     }, []);
 
     function searchData(query) {
@@ -110,7 +114,7 @@ export default function Admin1() {
     }
 
 
-    return (<Grid container sx={{ width: "100%", p: 0, m: 0 }}>
+    return (isLoggedIn ? <Grid container sx={{ width: "100%", p: 0, m: 0 }}>
         <Grid item
             xs={2}
             sx={{ height: "100vh", borderRight: "1px solid #e7e7e7", p: 4 }}
@@ -237,7 +241,7 @@ export default function Admin1() {
 
 
         </Grid>
-    </Grid>
+    </Grid> : <Login setIsLoggedIn={() => setIsLoggedIn(true)}/>
 
     );
 }

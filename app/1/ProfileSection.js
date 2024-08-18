@@ -2,7 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { ProfileStyles } from "./ProfileStyles";
 
-const ProfileSection = ({ title = "Profile Section", multiline = false, value, handleChange, width: width }) => {
+const ProfileSection = ({ title = "Profile Section", multiline = false, value, handleChange, width, type = "text" }) => {
 
   return <Stack sx={ProfileStyles.profileSectionStyles}>
     <TextField
@@ -16,6 +16,7 @@ const ProfileSection = ({ title = "Profile Section", multiline = false, value, h
       onChange={(event) => handleChange(event)}
       name={`profile${title}`}
       autoComplete="off"
+      type={type}
     />
   </Stack>
 };

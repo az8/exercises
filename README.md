@@ -2,7 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies
+```bash
+npm install
+```
+
+then run the development server:
 
 ```bash
 npm run dev
@@ -15,6 +20,12 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+1:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the /1.
+Open [http://localhost:3000/1/admin](http://localhost:3000/1/admin) with your browser to see the /1/admin route. Enter Username admin and Pasword admin to login.
+Open [http://localhost:3000/api/leads](http://localhost:3000/api/leads) with your browser to see the /api/leads api route.
+Code is at app/1 and app/api/leads
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
