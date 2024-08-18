@@ -1,13 +1,13 @@
 "use client"
 import { Box } from "@mui/material";
-import ProblemStatement2 from "./ProblemStatement2";
-import Solution2 from "./Solution2";
+import ProblemStatement4 from "./ProblemStatement4";
+import Solution4 from "./Solution4";
 
-export default function Problem2() {
+export default function Problem4() {
     return (
         <Box sx={{p: 1}}>
-            <ProblemStatement2 />
-            <Solution2 />
+            <ProblemStatement4 />
+            <Solution4 />
         </Box>
     );
 }

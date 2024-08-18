@@ -23,6 +23,7 @@ export default function RootLayout({
   const pathname = usePathname();
 
   useEffect(() => {
+    document.title = "Exercises";
     const path = pathname?.split("/")[1] ? pathname?.split("/")[1] : "1";
     setCurrentExcercise(path);
 }, [pathname]);
