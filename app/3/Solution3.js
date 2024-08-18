@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Solution3() {
 
@@ -13,7 +15,6 @@ export default function Solution3() {
         throw new Error();
       }
       const data = await response.json();
-      console.log(data);
       setData(data);
     } catch (error) {
       setError(error);
@@ -53,37 +54,41 @@ export default function Solution3() {
 
   return (
     <div>
-      <h1>Countries</h1>
-      <h6 style={{ color: 'red', fontWeight: "300" }}>{deleteError}</h6>
+      <h1 style={{margin: "20px 0"}}>Countries</h1>
+      <h5 style={{ color: 'red', fontWeight: "300", margin: "20px 0" }}>{deleteError}</h5>
 
       <table
-        border={1}
+        border={13}
         cellPadding={5}
         cellSpacing={1}
         style={{ borderColor: '#fefefe', borderCollapse: "collapse" }}
       >
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Currency</th>
-          <th>Capital</th>
-          <th>Action</th>
-        </tr>
-        {data &&
-          Array.isArray(data) &&
-          data.map((country) => (
-            <tr key={country.id}>
-              <td>{country.id}</td>
-              <td>{country.name}</td>
-              <td>{country.currency}</td>
-              <td>{country.capital}</td>
-              <td>
-                <button onClick={() => deleteCountry(country.id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Currency</th>
+            <th>Capital</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data &&
+            Array.isArray(data) &&
+            data.map((country) => (
+              <tr key={country.id}>
+                <td>{country.id}</td>
+                <td>{country.name}</td>
+                <td>{country.currency}</td>
+                <td>{country.capital}</td>
+                <td>
+                  <IconButton aria-label="delete" onClick={() => deleteCountry(country.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     </div>
   );
