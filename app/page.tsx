@@ -1,13 +1,14 @@
 "use client"
-import { Box } from "@mui/material";
-import ProblemStatement1 from "./ProblemStatement1";
-import Solution1 from "./Solution1";
+import { useEffect } from "react";
+import { useRouter } from 'next/navigation';
 
-export default function Problem1() {
-    return (
-        <Box sx={{p: 1}}>
-            <ProblemStatement1 />
-            <Solution1 />
-        </Box>
-    );
+export default function Home() {
+
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push("/1")
+      }, []);
+      
+    return
 }

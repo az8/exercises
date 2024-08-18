@@ -133,7 +133,7 @@ export default function CaseData() {
                         )
                         )
                 }
-                <Stack sx={ProfileStyles.profileSectionStyles}>
+                <Stack sx={{...ProfileStyles.profileSectionStyles, mb: 4}}>
                     <Button
                         variant="contained"
                         component="label"
