@@ -3,7 +3,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function ProblemStatement1() {
+export default function ProblemStatement({number, text}) {
     return (
         <Accordion defaultExpanded sc={{ mb: 2 }}>
             <AccordionSummary
@@ -11,10 +11,10 @@ export default function ProblemStatement1() {
                 aria-controls="panel3-content"
                 id="panel3-header"
             >
-                Problem 4
+                {`Problem ${number}`}
             </AccordionSummary>
             <AccordionDetails>
-                Create a UI with 2 date pickers and show the difference in dates picked.
+            {`${text}`}
             </AccordionDetails>
         </Accordion>
     );

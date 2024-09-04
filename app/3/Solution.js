@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function Solution3() {
+export default function Solution() {
 
   const [data, setData] = React.useState([]);
   const [error, setError] = React.useState('');

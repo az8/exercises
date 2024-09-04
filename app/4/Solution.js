@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function Solution1() {
+export default function Solution() {
 
     const [date1, setDate1] = useState(dayjs('2024-07-15'));
     const [date2, setDate2] = useState(dayjs('2024-07-16'));

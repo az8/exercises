@@ -12,7 +12,7 @@ export default function Problem() {
         <Box sx={{p: 1}}>
             <ProblemStatement
                 number={pathname?.split("/")[1] ? pathname?.split("/")[1] : "1"}
-                text={"Create a UI with 2 date pickers and show the difference in dates picked."}
+                text={"Create A page PUBLICLY available for prospects to fill and show confirmation on submission at route /1. Create A protected page available for admins to manage at route /1/admin"}
             />
             <Solution />
         </Box>

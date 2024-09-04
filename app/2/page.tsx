@@ -1,14 +1,20 @@
 "use client"
+import { usePathname } from 'next/navigation';
 import { Box } from "@mui/material";
-import ProblemStatement2 from "./ProblemStatement2";
-import Solution2 from "./Solution2";
+import ProblemStatement from "../../components/ProblemStatement";
+import Solution from "./Solution";
 
-export default function Problem2() {
+export default function Problem() {
+
+    const pathname = usePathname();
+
     return (
         <Box sx={{p: 1}}>
-            <ProblemStatement2 />
-            <Solution2 />
+            <ProblemStatement
+                number={pathname?.split("/")[1] ? pathname?.split("/")[1] : "1"}
+                text={"Fetch an api to suggest results on typing."}
+            />
+            <Solution />
         </Box>
     );
 }
-

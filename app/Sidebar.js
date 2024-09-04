@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Sidebar({currentExercise}) {
 
-    const excerciseCount = 4;
+    const excerciseCount = 5;
     const router = useRouter();
 
     return (
