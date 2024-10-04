@@ -3,11 +3,11 @@ import { Box } from "@mui/material";
 
 export default function Solution() {
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
+    const [dataWithImages, setDataWithImages] = useState([]);
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [similar, setSimilar] = useState(null);
+    const [hoverIndex, setHoverIndex] = useState(null);
 
     const fetchData = async (url) => {
         try {
@@ -24,100 +24,69 @@ export default function Solution() {
         }
     };
 
+    const fetchAllData = async (items) => {
+        try {
+            const promises = items?.map((item) =>
+                fetchData(`https://dog.ceo/api/breed/${item}/images/random`)
+            );
+            const imagesData = await Promise.all(promises);
+            return imagesData;
+        } catch (error) {
+            setError(error);
+        }
+    };
 
-    // debounce
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            fetchData('https://api.sampleapis.com/coffee/hot')
-                .then(result => setData(result && Array.isArray(result) && result.filter((item) => item?.title?.toLowerCase().includes(searchTerm?.toLowerCase()))))
-        }, 2000);
-        return () => clearTimeout(timeoutId);
-    }, [searchTerm]);
-
-
-    const handleSearch = (e) => {
-        setLoading(true);
-        setSimilar(null);
-        e.preventDefault();
-        setSearchTerm(e.target.value);
-    }
-
-    const handleSuggestionClick = () => {
-        fetchData('https://api.sampleapis.com/coffee/iced')
-            .then(result => setSimilar(result && Array.isArray(result) ? result : []))
-    }
+        fetchData('https://dog.ceo/api/breeds/list/all').then((data) => {
+            setData(data.message);
+            fetchAllData(Object.keys(data?.message)).then((dataArray) => {
+                setDataWithImages(dataArray);
+                setLoading(false);
+            });
+        });
+    }, []);
 
     return (
-        <Box>
-            <div style={{ marginBottom: "5px" }}>Search Coffee Type (Ex: latte)</div>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearch}
-                style={{
-                    width: "100%",
-                    border: "1px solid #d1d1d1",
-                    padding: "8px"
-                }}
-            />
-            {loading &&
-                <div style={{ margin: "5px 0" }}>Loading Suggestions...</div>
-            }
-            {
-                !loading && !similar && data && Array.isArray(data) && data.map((item) => (
-                    <div
-                        key={item?.title}
-                        style={{
-                            marginTop: "3px",
-                            marginBottom: "3px",
-                            padding: "4px",
-                            background: "#f4f4f4",
-                            cursor: "pointer",
-                        }}
-                        onClick={handleSuggestionClick}
-                    >{item?.title}</div>
-                ))
-            }
-            {similar && Array.isArray(similar) &&
-                <>
-                    <div style={{ margin: "5px 0" }}>Similar Iced Coffee:</div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: "3px", marginBottom: "3px", }}>
-                        {
-
-                            similar.map((item, index) => (
+        <>
+            {loading && <div id={'js_loading'}>{'Loading'}</div>}
+            {!loading && data && dataWithImages && (
+                <div style={{ display: 'flex', flexWrap: 'wrap' }} id={'js_gallery'}>
+                    {dataWithImages &&
+                        Array.isArray(dataWithImages) &&
+                        dataWithImages.map((imgObj, index) => (
+                            <div
+                                style={{ position: 'relative', maxHeight: '200px' }}
+                                id={'js_gallery'}
+                                onMouseEnter={() => setHoverIndex(index)}
+                                onMouseLeave={() => setHoverIndex(null)}
+                            >
+                                <img
+                                    src={imgObj.message}
+                                    style={{ maxHeight: '200px', objectFit: 'cover' }}
+                                    className={'js_image'}
+                                />
                                 <div
-                                    style={{ position: 'relative', maxHeight: '200px' }}
+                                    className={'js_name'}
+                                    style={{
+                                        position: 'absolute',
+                                        left: '10px',
+                                        bottom: '10px',
+                                        zIndex: 400,
+                                        color: 'white',
+                                        textShadow: '2px 2px 5px black',
+                                        opacity: hoverIndex == index ? 1 : 0,
+                                    }}
                                     id={'js_gallery'}
-                                    key={`js_gallery${index}`}
                                 >
-                                    <img
-                                        src={item.image}
-                                        style={{ maxHeight: '200px', objectFit: 'cover' }}
-                                        className={'js_image'}
-                                    />
-                                    <div
-                                        className={'js_name'}
-                                        style={{
-                                            position: 'absolute',
-                                            left: '10px',
-                                            bottom: '10px',
-                                            zIndex: 400,
-                                            color: 'white',
-                                            textShadow: '2px 2px 5px black',
-                                            opacity: 1,
-                                        }}
-                                        id={'js_gallery'}
-                                    >
-                                        {item.title
-                                            ? item.title
-                                            : 'Iced Coffee'}
-                                    </div>
+                                    {Object.keys(data)[index]
+                                        ? Object.keys(data)[index]?.charAt(0)?.toUpperCase() +
+                                        Object.keys(data)[index]?.slice(1)
+                                        : 'Good Dog'}
                                 </div>
-                            ))
-                        }
-                    </div>
-                </>
-            }
-        </Box>
+                            </div>
+                        ))}
+                </div>
+            )}
+        </>
     );
 }

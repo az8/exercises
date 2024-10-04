@@ -84,7 +84,7 @@ export default function Admin1() {
             // Loop through each property in the object
             return Object.values(obj).some(value => {
                 // Convert the value to a string and then to lowercase
-                return String(value).toLowerCase().includes(lowerCaseQuery);
+                return String(value).includes(query);
             });
         });
         setFilteredData(newFilteredData);
@@ -161,6 +161,7 @@ export default function Admin1() {
                                         </InputAdornment>,
                                     }}
                                     onChange={(event) => searchData(event.target.value)}
+                                    autoComplete="off"
                                 />
                                 <FormControl sx={{ width: "200px", m: 1 }}>
                                     <InputLabel id="status-select-label">Status</InputLabel>

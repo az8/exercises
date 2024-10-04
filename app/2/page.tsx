@@ -12,7 +12,7 @@ export default function Problem() {
         <Box sx={{p: 1}}>
             <ProblemStatement
                 number={pathname?.split("/")[1] ? pathname?.split("/")[1] : "1"}
-                text={"Fetch an api to suggest results on typing."}
+                text={"Fetch an api to get dog names and use that info to hit another api to get images and render cards."}
             />
             <Solution />
         </Box>
